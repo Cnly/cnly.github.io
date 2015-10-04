@@ -1,5 +1,6 @@
 ---
 title: HTTPS重定向
+tags: this
 ---
 
 github.io有HTTPS版本，于是给本站加了个自动重定向
