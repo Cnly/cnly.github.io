@@ -1,6 +1,7 @@
 ---
 title: 为Jekyll默认模板增加按照Tags分类功能
 tags: [this, toturial]
+date: 2015-10-04 23:38+0800
 ---
 
 Jekyll默认主题无法按照tags为文章分类，于是打算自己加上这个功能。
