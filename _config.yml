@@ -1,0 +1,17 @@
+# Site settings
+title: cnly.github.io
+baseurl: ""
+url: "https://cnly.github.io"
+github_username: Cnly
+exclude: ['about.md']
+
+# Build settings
+markdown: kramdown
+
+
+defaults:
+  - scope:
+      type: posts
+    values:
+      layout: post
+      author: Cnly
