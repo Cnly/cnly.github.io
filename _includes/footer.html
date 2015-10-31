@@ -1,14 +1,16 @@
 <footer class="site-footer">
 
   <div class="wrapper">
-    <!--
+
     <h2 class="footer-heading">{{ site.title }}</h2>
-    -->
+    
     <div class="footer-col-wrapper">
       <div class="footer-col  footer-col-1">
         <ul class="contact-list">
           <li>{{ site.title }}</li>
           <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+          <br />
+          <li>subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></li>
         </ul>
       </div>
 
@@ -46,10 +48,7 @@
       </div>
 
       <div class="footer-col  footer-col-3">
-        <p class="text">
-          A tiny site of Cnly</br>
-          Powered by Jekyll + Github Pages
-        </p>
+        <p class="text">{{ site.description }}</p>
       </div>
     </div>
 
