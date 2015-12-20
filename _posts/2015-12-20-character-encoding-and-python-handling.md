@@ -97,7 +97,7 @@ Python 2默认使用ASCII编码。
 
 若头部声明coding=utf-8, 声明变量`a = '中文'`，其编码为utf-8。
 
-[PEP 0263]: (https://www.python.org/dev/peps/pep-0263/) "PEP 0263 -- Defining Python Source Code Encodings | Python.org"
+[PEP 0263]: (https://www.python.org/dev/peps/pep-0263/) "PEP 0263 -- Defining Python Source Code Encodings \| Python.org"
 
 ### codecs 模块
 为简化对已编码的文件或流的处理，`codecs`模块提供了一些函数，如：
