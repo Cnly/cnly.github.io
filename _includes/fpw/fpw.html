@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<!-- saved from url=(0033)http://flowerpassword.com/app/web -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>花密网页版
+</title>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="./fpw_files/bootstrap.css" rel="stylesheet">
+    <link href="./fpw_files/fp.css" rel="stylesheet">
+	
+	<!-- scripts -->
+	<script type="text/javascript" async="" src="./fpw_files/ga.js"></script><script src="./fpw_files/jquery.min.js"></script>
+
+			<!-- 网页版JS文件 -->
+		<script src="./fpw_files/md5.js"></script>
+		<script type="text/javascript">
+		function countCode(){
+			var password = $("#password").val();
+			var key = $("#key").val();
+			if(password && key){
+				var md5one = $.md5(password,key);
+				var md5two = $.md5(md5one,'snow');
+				var md5three = $.md5(md5one,'kise');
+				//计算大小写
+				var rule = md5three.split("");
+				var source = md5two.split("");
+				for(var i=0;i<=31;i++){ 
+					if(isNaN(source[i])){
+						str ="sunlovesnow1990090127xykab";
+						if(str.search(rule[i]) > -1){
+							source[i] = source[i].toUpperCase();
+						}
+					}
+				}
+				var code32 = source.join("");
+				var code1 = code32.slice(0,1);
+				if(isNaN(code1)){
+					var code16 = code32.slice(0,16);
+					}else{
+					var code16 = "K" + code32.slice(1,16);
+					}
+				$("#code16").text(code16);
+			}
+		}
+
+		$(function(){ //页面载入后执行的内容
+			//监视内容改变
+			$('#password').change(countCode);
+			$('#key').change(countCode);
+			$('#password').keyup(countCode);
+			$('#key').keyup(countCode);
+			//调整复制按钮位置
+			$(window).resize(function(){clip.reposition();});
+			//复制按钮的事件
+			clip.addEventListener( "mouseOver", function(client) {
+			client.setText( $("#code16").text() ); // 重新设置要复制的值
+			$('#copycode16').addClass("copycode16h");$('#code16').addClass("code16h");
+			});
+			clip.addEventListener( "mouseOut", function(client) {
+			$('#copycode16').removeClass("copycode16h");$('#code16').removeClass("code16h");
+			});
+			clip.addEventListener( "complete", function() {
+			$('#copyOK').fadeTo(0,0).css("border-color","#22B614").css("background-color","#22B614").fadeTo('normal',1).fadeTo(2000,1).fadeTo(3000,0);
+			_gaq.push(['_trackEvent', 'App', 'Copy', 'Web']);
+			});
+		});
+		</script>
+	
+
+	<script type="text/javascript">
+	$(function() {
+	var $sidebar = $("#content-nav"),
+	$window = $(window),
+	offset = $sidebar.offset(),
+	topPadding = 15;
+	$window.scroll(function() {
+	if ($window.scrollTop() > offset.top) {
+	$sidebar.stop().animate({
+	marginTop: $window.scrollTop() - offset.top + topPadding
+	});
+	} else {
+	$sidebar.stop().animate({
+	marginTop: 0
+	});
+	}
+	});
+	});
+	</script>
+
+  <script type="text/javascript" async="" src="./fpw_files/embed.js"></script><style>#haloword-pron { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -94px -34px; }#haloword-pron:hover { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -111px -34px; }#haloword-open { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -94px -17px; }#haloword-open:hover { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -111px -17px; }#haloword-close { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -94px 0; }#haloword-close:hover { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -111px 0; }#haloword-add { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -94px -51px; }#haloword-add:hover { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -111px -51px; }#haloword-remove { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -94px -68px; }#haloword-remove:hover { background: url(chrome-extension://bhkcehpnnlgncpnefpanachijmhikocj/img/icon.svg) -111px -68px; }</style><link type="text/css" rel="stylesheet" href="./fpw_files/embed.default.css"></head>
+
+	<body youdao="bind">
+	<div class="container">
+	
+<div id="content" class="row">
+<div class="span9">
+	<h2><span>1</span>输入</h2>
+	<div id="input">
+		<label for="password">记忆密码</label><input id="password" name="password" type="password" value="" tabindex="1">
+		<span>+</span>
+		<label for="key">区分代号</label><input id="key" name="key" type="text" value="" tabindex="2">
+	</div>
+	<h2><span>2</span>获取</h2>
+	<div id="get">
+		<p id="tuijian">最终密码<span id="code16" class="code16d">&nbsp;</span>
+	</div>
+	<script src="./fpw_files/ZeroClipboard.js"></script>
+	<script type="text/javascript">
+		//ZeroClipboard设置
+		var clip = new ZeroClipboard.Client(); // 新建一个对象
+		ZeroClipboard.setMoviePath( 'http://file.kisexu.com/fp/js/ZeroClipboard.swf' );
+		clip.setHandCursor( true ); // 设置鼠标为手型
+		clip.setText("花密 FlowerPassword.com"); // 设置要复制的文本。
+		clip.glue("copycode16"); // 和上一句位置不可调换
+	</script>
+
+	<script src="./fpw_files/bootstrap-tab.js"></script>
+
+
+</div><!-- span9 -->
+
+	<footer>
+		<p>Copyright © 2011-2016 &nbsp;&nbsp;&nbsp; FlowerPassword.com &nbsp;&nbsp;&nbsp; All rights reserved.</p>
+		<p>联系邮箱： <a target="_blank" href="mailto:kisexu@gmail.com?subject=%E8%8A%B1%E5%AF%86%E4%BA%A4%E6%B5%81">KiseXu@gmail.com</a></p>
+	</footer>
+	
