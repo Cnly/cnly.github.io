@@ -478,3 +478,23 @@ footer p a:hover{
 		<p>联系邮箱： <a target="_blank" href="mailto:kisexu@gmail.com?subject=%E8%8A%B1%E5%AF%86%E4%BA%A4%E6%B5%81">KiseXu@gmail.com</a></p>
 	</footer>
 	
+{% if site.githubio_https_redirect %}
+  <script>
+    if (window.location.host.indexOf('github.io') > -1 && window.location.protocol != "https:"){
+        window.location.protocol = "https";
+    }
+  </script>
+{% endif %}
+
+{% if site.google_analytics %}
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', '{{ site.google_analytics }}', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+{% endif %}
