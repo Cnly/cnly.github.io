@@ -3,7 +3,7 @@ layout: page
 permalink: /sin/
 ---
 
-[Win7/+](https://github.com/shadowsocks/shadowsocks-csharp/releases/download/2.5.6/Shadowsocks-win-2.5.6.zip)
+[Win7/+](https://github.com/shadowsocks/shadowsocks-windows/releases)
 
 [Qt5](https://github.com/shadowsocks/shadowsocks-qt5/releases)
 <br />
@@ -12,3 +12,5 @@ permalink: /sin/
 [OSX](https://github.com/shadowsocks/shadowsocks-iOS/releases/download/2.6.3/ShadowsocksX-2.6.3.dmg)
 
 [SwitchyOmega](https://github.com/FelisCatus/SwitchyOmega/releases)
+
+[List](https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt)
