@@ -1,6 +1,6 @@
 ---
 title: Python、Scrapy、豆瓣日报(1)
-tags: [this, douban-daily, python]
+tags: [scrapy, douban-daily, python]
 date: 2016-07-15 11:37+0800
 ---
 
