@@ -99,8 +99,11 @@ __1__. 为什么网桥作为第二层设施要有IP地址而且eth0不能有？
 答：
 
     (1) 理论上网桥不需要IP地址也能工作。但是实际中我们往往需要对网桥本身设备进行控制，所以我们需要有IP地址。
-    (2) 如果要让网桥进行第三层的包（如DHCP、DNS）的转发，其必须要有IP地址。([ref][WDWNAIAFABAU])
-    (3) 如果eth0有与br0相同的IP，它对eth0上设备发来的包作应答，设备将失去转发能力。([ref][WDLRMIFEITBIULSE])
+    (2) 如果要让网桥进行第三层的包（如DHCP、DNS）的转发，其必须要有IP地址。
+    (3) 如果eth0有与br0相同的IP，它对eth0上设备发来的包作应答，设备将失去转发能力。
+
+([ref - (2)][WDWNAIAFABAU])  
+([ref - (3)][WDLRMIFEITBIULSE])
 
 __2__. 有的教程将br0的bridge\_fd设为0是什么意思？
 
@@ -108,7 +111,7 @@ __2__. 有的教程将br0的bridge\_fd设为0是什么意思？
 
     bridge_fd是forward delay，即桥在进入forwarding态之前，在listening和learning态中各花的时间。实测在不开启STP的情况下无用（情况可能因设备、系统而异）。
 
-([ref - Cisco][UATSTPTC])
+([ref - Cisco][UATSTPTC])  
 ([ref - Linux Foundation Wiki][NBLFW])
 
 __第五步__：配置hostapd
@@ -121,7 +124,7 @@ __第五步__：配置hostapd
 * [Understand Linux kernel virtual bridge port numbering - Unix & Linux Stack Exchange][ULKVBPNULSE]
 * [Switch Documentation OpenWrt Wiki][SDOW]
 * [linux - Finding the Physical port of an Ethernet device - OPENWRT - Stack Overflow][LFTPPOAEDO]
-* [s- hostapd error "nl80211: Could not configure driver mode" - Ask Ubuntu][HENCNCDMAU]
+* [wireless- hostapd error "nl80211: Could not configure driver mode" - Ask Ubuntu][HENCNCDMAU]
 * [networking - Why do we need an IP address for a bridge? - Ask Ubuntu][WDWNAIAFABAU]
 * [networking - Why does Linux require moving IP from eth interface to bridge interface - Unix & Linux Stack Exchange][WDLRMIFEITBIULSE]
 * [Understanding and Tuning Spanning Tree Protocol Timers - Cisco][UATSTPTC]
