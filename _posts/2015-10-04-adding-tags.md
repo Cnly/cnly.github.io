@@ -1,6 +1,6 @@
 ---
 title: 为Jekyll默认模板增加按照Tags分类功能
-tags: [this, tutorial]
+tags: [this, default]
 date: 2015-10-04 23:38+0800
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: 在Raspberry Pi 2上安装Kali Linux 2.0
-tags: [tutorial]
+tags: [raspi]
 ---
 
 ##下载及写入系统

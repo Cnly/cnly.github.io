@@ -1,6 +1,6 @@
 ---
 title: Python 3.4中的异步I/O
-tags: default
+tags: [python]
 ---
 ## 异步I/O与线程：异步I/O ≠ 多线程
 

@@ -1,6 +1,6 @@
 ---
 title: 树莓派桥接将路由器有线网络扩展成无线
-tags: [tutorial, raspi]
+tags: [raspi]
 date: 2016-07-30 09:24+0800
 ---
 

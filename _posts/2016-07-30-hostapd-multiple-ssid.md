@@ -1,6 +1,6 @@
 ---
 title: hostapd多SSID
-tags: tutorial
+tags: default
 date: 2016-07-30 12:21+0800
 ---
 

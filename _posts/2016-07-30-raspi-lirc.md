@@ -1,6 +1,6 @@
 ---
 title: 配置树莓派上的lirc(Raspbian, 2016)
-tags: [tutorial, raspi]
+tags: [raspi]
 date: 2016-07-30 11:48+0800
 ---
 
