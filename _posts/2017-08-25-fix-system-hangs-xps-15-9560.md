@@ -188,6 +188,6 @@ Well, then seems power management only is not to blame. Since there were the PCI
     Aug 25 00:51:45 <hidden> kernel: [    2.973718] Console: switching to colour frame buffer device 240x67
     Aug 25 00:51:45 <hidden> kernel: [    2.973734] i915 0000:00:02.0: fb0: inteldrmfb frame buffer device
 
-It seems that the nVidia card is being initialized during kernel boot. So I tried disallowing this by adding `nouveau.modeset=0` to the grub command line. And things are fixed.
+It seems that the nVidia card is being initialized during kernel boot. So I tried disallowing this by adding `nouveau.modeset=0` to the grub command line. And things are fixed. Also, things still worked after I restored TLP config to defaults.
 
 However, I still don't know how exactly things worked... Hopefully they'll be clearer as time pass by.:)
