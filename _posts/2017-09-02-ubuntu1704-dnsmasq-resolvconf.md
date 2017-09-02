@@ -1,5 +1,5 @@
 ---
-title: Ubuntu 17.04: Conflicts between systemd-resolved, dnsmasq and resolvconf
+title: Ubuntu 17.04 - Conflicts between systemd-resolved, dnsmasq and resolvconf
 tags: [ubuntu]
 ---
 
