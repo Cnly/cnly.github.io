@@ -46,6 +46,6 @@ Philomelus（本项目）的程序分为几大部分，分别负责不同的工�
 
 在有网络交互的部分中，使用多线程会得到更好的效果。目前没有发现southcn使用限速设置。
 
-## 实现
+## 程序实现
 
 Philomelus使用Python 3作为语言，可以在[https://github.com/Cnly/Philomelus](https://github.com/Cnly/Philomelus)找到。
