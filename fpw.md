@@ -1,4 +1,4 @@
 ---
-permalink: /fpw/
+permalink: /fpw
 ---
 {% include fpw/fpw.html %}
