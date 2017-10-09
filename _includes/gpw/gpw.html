@@ -1,0 +1,183 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>gPassword Web</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <script>{% include gpw/js/jssha.js %}</script>
+    <script>{% include gpw/js/base64.js %}</script>
+    <script>{% include gpw/js/gpwcore.js %}</script>
+    <script>
+        var targetLength = 16;
+        var chars = CHARS;
+        function refreshOutput () {
+            if (!$('#password').val() || !$('#key').val()) {
+                return;
+            }
+            $('#output').val(gpw($('#password').val(), $('#key').val(), targetLength, chars));
+        }
+
+        $('document').ready(function () {
+
+            targetLengthSelector = $('#target-length-selector');
+
+            $('#password, #key').bind('keyup paste', function () {
+                refreshOutput();
+            });
+
+            $('#output').focus(function () {
+                this.select();
+            });
+
+            $('#16, #24, #32').bind('click keyup', function () {
+                targetLength = parseInt($(this).attr('id'));
+                refreshOutput();
+            });
+
+            $('#standard').bind('click keyup', function () {
+                chars = CHARS;
+                refreshOutput();
+            });
+
+            $('#weaker').bind('click keyup', function () {
+                chars = CHARS_WEAKER;
+                refreshOutput();
+            });
+
+            $('button').tooltip({
+                trigger: 'click',
+                placement: 'bottom'
+            });
+
+            $('#gpw-copy').click(function () {
+                if (0 === $('#output').val().length) {
+                    return;
+                }
+
+                $('#output').select();
+                var success = document.execCommand('copy');
+
+                if (success) {
+                    $(this).removeClass('btn-light')
+                        .addClass('btn-success')
+                        .html('Copied');
+                } else {
+                    $(this).removeClass('btn-light')
+                        .addClass('btn-danger')
+                        .html('Failed');
+                }
+
+                setTimeout(function () {
+                    $('#gpw-copy').html('Copy')
+                        .removeClass('btn-success btn-danger')
+                        .addClass('btn-light');
+                }, 1000);
+
+            });
+
+        });
+    </script>
+    {% if site.githubio_https_redirect %}
+      <script>
+        if (window.location.host.indexOf('github.io') > -1 && window.location.protocol != "https:"){
+            window.location.protocol = "https";
+        }
+      </script>
+    {% endif %}
+    {% if site.google_analytics %}
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', '{{ site.google_analytics }}', 'auto');
+        ga('send', 'pageview');
+
+      </script>
+    {% endif %}
+</head>
+<body>
+<div class="container" style="max-width: 576px">
+    <div class="card" style="margin-top: 50px; margin-bottom: 10px; padding: 50px; padding-left: 60px; padding-right: 60px">
+        <h2>gPw Web</h2>
+        <br/>
+        <hr style="width: 100%">
+        <br/>
+        <input type="password" class="form-control" placeholder="Password" id="password"/>
+        <br/>
+        <input type="text" class="form-control" placeholder="Key" id="key"/>
+        <br/>
+        <div class="row align-items-center">
+            <div class="col-4">
+                <span>Target Length</span>
+            </div>
+            <div class="col-8">
+                <div class="btn-group float-right" id="target-length-selector" data-toggle="buttons" style="margin-left: 20px">
+                    <label class="btn btn-light active" id="16">
+                        <input type="radio" name="target-length"> 16
+                    </label>
+                    <label class="btn btn-light" id="24">
+                        <input type="radio" name="target-length"> 24
+                    </label>
+                    <label class="btn btn-light" id="32">
+                        <input type="radio" name="target-length"> 32
+                    </label>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="row align-items-center">
+            <div class="col-4">
+                <span>Chars Allowed</span>
+            </div>
+            <div class="col-8">
+                <div class="btn-group float-right" id="chars-selector" data-toggle="buttons" style="margin-left: 20px">
+                    <label class="btn btn-light active" id="standard">
+                        <input type="radio" name="chars"> gPw Standard
+                    </label>
+                    <label class="btn btn-light" id="weaker">
+                        <input type="radio" name="chars"> Weaker
+                    </label>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="row align-items-center">
+            <div class="col-2">
+                <span>gPw</span>
+            </div>
+            <div class="col-10">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="output" readonly/>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-light" id="gpw-copy">
+                            <!--<span class="glyphicon glyphicon-copy"></span>-->
+                            Copy
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8">
+            <!--<a class="text-secondary" href="#" onclick="$(this).html('//TODO :P');">Python</a>-->
+            <!--<span class="text-secondary"> | </span>-->
+            <!--<a class="text-secondary" href="#" onclick="$(this).html('//TODO :P');">CLI</a>-->
+            <!--<span class="text-secondary"> | </span>-->
+            <!--<a class="text-secondary" href="#" onclick="$(this).html('//TODO :P');">Javascript</a>-->
+            <!--<span class="text-secondary"> | </span>-->
+            <!--<a class="text-secondary" href="#" onclick="$(this).html('//TODO :P');">Web</a>-->
+            <!--<span class="text-secondary"> | </span>-->
+            <!--<a class="text-secondary" href="#" onclick="$(this).html('//TODO :P');">Chrome</a>-->
+        </div>
+        <div class="col-4">
+            <a class="float-right text-secondary" href="#" onclick="$(this).html('// TODO :P');">About</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
