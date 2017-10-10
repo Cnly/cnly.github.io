@@ -4,6 +4,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>gPassword Web</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <style>
+        .incard-margin {
+            margin: 14px 0;
+        }
+        @media (min-width: 992px) {  /* breakpoint: lg */
+            .incard-margin {
+                margin: 25px 0;
+            }
+        }
+        .br {
+            margin: 10px 0;
+        }
+    </style>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
@@ -101,22 +114,23 @@
     {% endif %}
 </head>
 <body>
-<div class="container" style="max-width: 576px">
-    <div class="card" style="margin-top: 50px; margin-bottom: 10px; padding: 50px; padding-left: 30px; padding-right: 30px">
+<div class="container" style="max-width: 576px;">
+    <div class="d-block d-lg-none" style="margin-bottom: 10px;"></div>
+    <div class="d-none d-lg-block" style="margin-bottom: 50px;"></div>
+    <div class="card" style="margin-bottom: 10px; padding-left: 30px; padding-right: 30px;">
+        <div class="incard-margin"></div>
         <h2>gPw Web</h2>
-        <br/>
-        <hr style="width: 100%">
-        <br/>
+        <hr style="width: 100%; margin: 25px 0 35px 0;">
         <input type="password" class="form-control" placeholder="Password" id="password"/>
-        <br/>
+        <div class="br"></div>
         <input type="text" class="form-control" placeholder="Key" id="key"/>
-        <br/>
+        <div class="br"></div>
         <div class="row align-items-center">
-            <div class="col-4">
+            <div class="col-7">
                 <span>Target Length</span>
             </div>
-            <div class="col-8">
-                <div class="btn-group float-right" id="target-length-selector" data-toggle="buttons" style="margin-left: 20px">
+            <div class="col-5">
+                <div class="btn-group float-right" id="target-length-selector" data-toggle="buttons" style="margin-left: 20px;">
                     <label class="btn btn-light active" id="16">
                         <input type="radio" name="target-length"> 16
                     </label>
@@ -129,13 +143,14 @@
                 </div>
             </div>
         </div>
-        <br/>
+        <div class="br"></div>
         <div class="row align-items-center">
             <div class="col-4">
-                <span>Chars Allowed</span>
+                <span class="d-none d-sm-block">Chars Allowed</span>
+                <span class="d-block d-sm-none">Charset</span>
             </div>
             <div class="col-8">
-                <div class="btn-group float-right" id="chars-selector" data-toggle="buttons" style="margin-left: 20px">
+                <div class="btn-group float-right" id="chars-selector" data-toggle="buttons" style="margin-left: 20px;">
                     <label class="btn btn-light active" id="standard">
                         <input type="radio" name="chars"> gPw Standard
                     </label>
@@ -145,7 +160,7 @@
                 </div>
             </div>
         </div>
-        <br/>
+        <div class="br"></div>
         <div class="row align-items-center">
             <div class="col-2">
                 <span style="white-space: nowrap;">gPw</span>
@@ -162,6 +177,7 @@
                 </div>
             </div>
         </div>
+        <div class="incard-margin"></div>
     </div>
     <div class="row">
         <div class="col-8">
