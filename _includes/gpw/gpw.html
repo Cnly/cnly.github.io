@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>gPassword Web</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         .incard-margin {
             margin: 14px 0;
@@ -24,18 +25,24 @@
     <script>{% include gpw/js/base64.js %}</script>
     <script>{% include gpw/js/gpwcore.js %}</script>
     <script>
+
         var targetLength = 16;
         var chars = CHARS;
+
         function refreshOutput () {
-            if (!$('#password').val() || !$('#key').val()) {
+            var password = $('#password').val(), key = $('#key').val();
+            if (!password || !key) {
                 return;
             }
-            $('#output').val(gpw($('#password').val(), $('#key').val(), targetLength, chars));
+            $('#output').val(gpw(password, key, targetLength, chars));
         }
 
         $('document').ready(function () {
 
-            targetLengthSelector = $('#target-length-selector');
+            $targetLengthSelector = $('#target-length-selector');
+            $copyIcon = $('#copy-icon');
+            $password = $('#password');
+            $visibilityIcon = $('#visibility-icon');
 
             $('#password, #key').bind('keyup paste', function () {
                 refreshOutput();
@@ -60,35 +67,41 @@
                 refreshOutput();
             });
 
-            $('button').tooltip({
-                trigger: 'click',
-                placement: 'bottom'
-            });
-
             $('#gpw-copy').click(function () {
-                if (0 === $('#output').val().length) {
+                var output = $('#output');
+                if (0 === output.val().length) {
                     return;
                 }
 
-                $('#output').select();
+                output.select();
                 var success = document.execCommand('copy');
 
                 if (success) {
                     $(this).removeClass('btn-light')
-                        .addClass('btn-success')
-                        .html('Copied');
+                        .addClass('btn-success');
+                    $copyIcon.text('done');
                 } else {
                     $(this).removeClass('btn-light')
-                        .addClass('btn-danger')
-                        .html('Failed');
+                        .addClass('btn-danger');
+                    $copyIcon.text('error');
                 }
 
                 setTimeout(function () {
-                    $('#gpw-copy').html('Copy')
-                        .removeClass('btn-success btn-danger')
+                    $('#gpw-copy').removeClass('btn-success btn-danger')
                         .addClass('btn-light');
+                    $copyIcon.text('content_copy');
                 }, 1000);
 
+            });
+
+            $('#visibility-button').click(function () {
+                if ($password.attr('type') === 'password') {
+                    $password.attr('type', 'text');
+                    $visibilityIcon.text('visibility_off');
+                } else {
+                    $password.attr('type', 'password');
+                    $visibilityIcon.text('visibility');
+                }
             });
 
         });
@@ -121,7 +134,12 @@
         <div class="incard-margin"></div>
         <h2>gPw Web</h2>
         <hr style="width: 100%; margin: 25px 0 35px 0;">
-        <input type="password" class="form-control" placeholder="Password" id="password"/>
+        <div class="input-group">
+            <input type="password" class="form-control" placeholder="Password" id="password" autofocus/>
+            <span class="input-group-btn">
+            <button type="button" class="btn btn-sm btn-outline-secondary" tabindex="-1" id="visibility-button"><i class="material-icons align-text-bottom" id="visibility-icon">visibility</i></button>
+        </span>
+        </div>
         <div class="br"></div>
         <input type="text" class="form-control" placeholder="Key" id="key"/>
         <div class="br"></div>
@@ -170,8 +188,7 @@
                     <input type="text" class="form-control" id="output" readonly/>
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-light" id="gpw-copy">
-                            <!--<span class="glyphicon glyphicon-copy"></span>-->
-                            Copy
+                            <i class="material-icons align-text-bottom" id="copy-icon">content_copy</i>
                         </button>
                     </span>
                 </div>
