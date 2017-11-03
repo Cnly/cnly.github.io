@@ -26,7 +26,7 @@
     <script>{% include gpw/js/gpwcore.js %}</script>
     <script>
 
-        var targetLength = 16;
+        var targetLength = 32;
         var chars = CHARS;
 
         function refreshOutput () {
@@ -43,6 +43,7 @@
             $copyIcon = $('#copy-icon');
             $password = $('#password');
             $visibilityIcon = $('#visibility-icon');
+            $visibilityButton = $('visibility-button');
 
             $('#password, #key').bind('keyup paste', function () {
                 refreshOutput();
@@ -94,7 +95,7 @@
 
             });
 
-            $('#visibility-button').click(function () {
+            $visibilityButton.click(function () {
                 if ($password.attr('type') === 'password') {
                     $password.attr('type', 'text');
                     $visibilityIcon.text('visibility_off');
@@ -137,7 +138,7 @@
         <div class="input-group">
             <input type="password" class="form-control" placeholder="Password" id="password" autofocus/>
             <span class="input-group-btn">
-            <button type="button" class="btn btn-sm btn-outline-secondary" tabindex="-1" id="visibility-button"><i class="material-icons align-text-bottom" id="visibility-icon">visibility</i></button>
+            <button type="button" class="btn btn-sm btn-outline-secondary" tabindex="-1" style="padding-top: 5px;" id="visibility-button"><i class="material-icons align-text-bottom" id="visibility-icon">visibility</i></button>
         </span>
         </div>
         <div class="br"></div>
@@ -149,13 +150,13 @@
             </div>
             <div class="col-5">
                 <div class="btn-group float-right" id="target-length-selector" data-toggle="buttons" style="margin-left: 20px;">
-                    <label class="btn btn-light active" id="16">
+                    <label class="btn btn-light" id="16">
                         <input type="radio" name="target-length"> 16
                     </label>
                     <label class="btn btn-light" id="24">
                         <input type="radio" name="target-length"> 24
                     </label>
-                    <label class="btn btn-light" id="32">
+                    <label class="btn btn-light active" id="32">
                         <input type="radio" name="target-length"> 32
                     </label>
                 </div>
