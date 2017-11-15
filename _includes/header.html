@@ -16,7 +16,9 @@
       <div class="trigger">
         {% for page in site.pages %}
           {% if page.title %}
-          <a class="page-link" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
+          <a class="page-link" href="{{ page.url | prepend: site.baseurl }}">
+            {% if page.fa-icon %}
+              <i class="fa fa-{{ page.fa-icon }}" style="margin-right: 3px;" aria-hidden="true"></i>{% endif %}{{ page.title }}</a>
           {% endif %}
         {% endfor %}
       </div>

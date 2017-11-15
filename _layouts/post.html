@@ -6,22 +6,24 @@ layout: default
 
   <header class="post-header">
     <h1 class="post-title">{{ page.title }}</h1>
-    <p class="post-meta" style="line-height: 25px;">{{ page.date | date: "%-d %b, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
+    <p class="post-meta" style="line-height: 25px;">{{ page.date | date: "%-d %b, %Y" }}{% if page.author %}&nbsp;&nbsp;•&nbsp;&nbsp;by {{ page.author }}{% endif %}{% if page.meta %}&nbsp;&nbsp;•&nbsp;&nbsp;{{ page.meta }}{% endif %}</p>
     {% if page.tags.size > 0 %}
-      <p class="post-meta" style="line-height: 15px;">Tags • 
-      {% for item in page.tags %}
-        <a href="{{ baseurl }}/tags/#{{ item }}-ref">{{ item }}</a>
-      {% endfor %}
+      <p class="post-meta" style="line-height: 15px;">
+        <i class="fa fa-tag" style="margin-right: 3px;" aria-hidden="true"></i>
+        {% for item in page.tags %}
+          <a href="{{ baseurl }}/tags/#{{ item }}-ref">{{ item }}</a>
+        {% endfor %}
       </p>
     {% endif %}
     {% if page.categories.size > 0 %}
-      <p class="post-meta" style="line-height: 10px;">Categories • 
-      {% for item in page.categories %}
-        <a href="{{ baseurl }}/categories/#{{ item }}-ref">{{ item }}</a>
-        {% unless forloop.last %}
-          >
-        {% endunless %}
-      {% endfor %}
+      <p class="post-meta" style="line-height: 10px;">
+        <i class="fa fa-folder" style="margin-right: 3px;" aria-hidden="true"></i>
+        {% for item in page.categories %}
+          <a href="{{ baseurl }}/categories/#{{ item }}-ref">{{ item }}</a>
+          {% unless forloop.last %}
+            >
+          {% endunless %}
+        {% endfor %}
       </p>
     {% endif %}
   </header>
@@ -29,26 +31,28 @@ layout: default
   <article class="post-content">
     {{ content }}
   </article>
-  
-  {% if page.tags.size > 0 || page.categories.size > 0 %}
+
+  {% if page.tags.size > 0 or page.categories.size > 0 %}
     <br />
   {% endif %}
-  
+
   {% if page.tags.size > 0 %}
-    <p class="post-meta" style="line-height: 15px;">Tags • 
-    {% for item in page.tags %}
-      <a href="{{ baseurl }}/tags/#{{ item }}-ref">{{ item }}</a>
-    {% endfor %}
+    <p class="post-meta" style="line-height: 15px;">
+      <i class="fa fa-tag" style="margin-right: 3px;" aria-hidden="true"></i>
+      {% for item in page.tags %}
+        <a href="{{ baseurl }}/tags/#{{ item }}-ref">{{ item }}</a>
+      {% endfor %}
     </p>
   {% endif %}
   {% if page.categories.size > 0 %}
-    <p class="post-meta" style="line-height: 10px;">Categories • 
-    {% for item in page.categories %}
-      <a href="{{ baseurl }}/categories/#{{ item }}-ref">{{ item }}</a>
-      {% unless forloop.last %}
-        >
-      {% endunless %}
-    {% endfor %}
+    <p class="post-meta" style="line-height: 10px;">
+      <i class="fa fa-folder" style="margin-right: 3px;" aria-hidden="true"></i>
+      {% for item in page.categories %}
+        <a href="{{ baseurl }}/categories/#{{ item }}-ref">{{ item }}</a>
+        {% unless forloop.last %}
+          >
+        {% endunless %}
+      {% endfor %}
     </p>
   {% endif %}
 
