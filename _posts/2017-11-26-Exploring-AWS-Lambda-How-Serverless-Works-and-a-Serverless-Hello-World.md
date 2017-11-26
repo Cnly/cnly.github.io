@@ -1,5 +1,5 @@
 ---
-title: 'Exploring AWS Lambda: How Serverless Works + a Serverless Hello World IP Echo App'
+title: 'Exploring AWS Lambda: Building a Serverless Hello World IP Echo App'
 tags: [aws, serverless]
 ---
 
