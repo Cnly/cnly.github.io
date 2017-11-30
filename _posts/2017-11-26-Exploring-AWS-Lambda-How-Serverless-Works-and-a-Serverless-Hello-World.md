@@ -89,6 +89,16 @@ Drawbacks for each method: the first method may be slower; the second does not s
 
 For the second method, we need: a domain, an ACM (AWS Certificate Manager) certificate, and some configuration.
 
-First go to ACM (just search for it in AWS console), and make sure the correct region is selected. This is required because we are using Lambda, not Lambda@Edge, so the regions of our Lambda and the certificate need to be the same (this is my theory; I didn't test it, though). To change region, refer to the region configuration in the upper right corner of the page.
+First go to ACM (just search for it in AWS console), and make sure the correct region is selected. If you are going to use edge optimized custom domain configuration, select N. Virginia; otherwise make it consistent with your API Gateway page. To change region, refer to the region configuration in the upper right corner of the page.
 
-Then click request a certificate, and go through the process. After that, go back to API Gateway > Custom Domain Names. Create a custom domain name (select Regional), and add a base path mapping (optional). For example, we can map https://ip.tld/ directly to the Lambda invoke URL https://some-aws-server.com/prod/SomeLambda. Finally, save, and we are all done.
+Then click request a certificate, and go through the process. After that, go back to API Gateway > Custom Domain Names. Create a custom domain name, and add a base path mapping (optional). For example, we can map https://ip.tld/ directly to the Lambda invoke URL https://some-aws-server.com/prod/SomeLambda. Finally, save, and we are all done.
+
+P.S. If the ACM page says
+
+{% highlight text %}
+The AWS Access Key Id needs a subscription for the service (Service: AmazonRoute53; Status Code: 403; Error Code: OptInRequired; Request ID: <HIDDEN>)
+{% endhighlight %}
+
+then most of the time just refresh the page for some times and this will be gone. Alternatively, opt in through the instructions sent to you via email.
+
+P.S.2. If the pages says 'unknown error' when you create custom domain configuration, try switching to Regional config instead of Edge Optimized.
