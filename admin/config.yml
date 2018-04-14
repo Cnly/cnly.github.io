@@ -2,7 +2,7 @@ backend:
   name: github
   repo: Cnly/cnly.github.io
   branch: master
-  site_id: eloquent-meitner-e39e08.netlify.com
+  site_domain: eloquent-meitner-e39e08.netlify.com
 
 media_folder: "images/uploads"
 
