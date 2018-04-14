@@ -5,6 +5,7 @@ title: >-
 date: '2018-04-14T20:16:42+08:00'
 tags:
   - this
+  - tutorial
 ---
 This post walks through the really fast process of adding [Netlify CMS](https://www.netlifycms.org/) to an existing GitHub Pages site. At the end of this post you should have:
 
