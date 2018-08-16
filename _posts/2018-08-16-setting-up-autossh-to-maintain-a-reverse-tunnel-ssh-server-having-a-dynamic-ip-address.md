@@ -95,7 +95,3 @@ sudo systemctl enable --now autossh
 ```
 
 And we're done.
-
-<br>
-
-## 
