@@ -43,9 +43,15 @@ sudo chmod 700 ~sshtunuser/.ssh
 sudo chmod 600 ~sshtunuser/.ssh/authorized_keys
 ```
 
-We'll also need to set `GatewayPorts yes` and `ClientAliveInterval 15` in `/etc/ssh/sshd_config` on the server.
+On the server side in `/etc/ssh/sshd_config`, we'll also need a few options:
 
-The first option allows SSH clients to listen to a port with IP addresses other than localhost, and the second tells the server to ensure the client is still alive every 15 seconds.
+```
+GatewayPorts yes
+ClientAliveInterval 15
+ClientAliveCountMax 3
+```
+
+The first option allows SSH clients to listen to a port with IP addresses other than localhost, and the second tells the server to ensure the client is still alive every 15 seconds. The third one is optional; it tells the server to disconnect a client if it hasn't replied to keep-alive messages 3 times (this is default).
 
 Do a `sudo systemctl restart ssh` to make sure new options are taken without error.
 
