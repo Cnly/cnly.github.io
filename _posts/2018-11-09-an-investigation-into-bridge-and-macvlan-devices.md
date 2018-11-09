@@ -13,7 +13,7 @@ Actually, for the last point, I think that's why people instruct others to move 
 
 I did a lot of searching and I don't think I've seen an explanation for all my observations convincing enough, so I decided to dig into the source of kernel a bit. I'm by no means an expert or something close to that in terms of kernel; I'm just trying to find an explanation for myself with what I can guess from the code. I'm writing down what I found here so I'll not forget them. If any reader found something wrong in this post, please feel free to point it out.
 
-The code I looked into is of version `v4.19.1` which I found here: https://elixir.bootlin.com/linux/v4.19.1/source
+The code I looked into is of version `v4.19.1` which I found here: [https://elixir.bootlin.com/linux/v4.19.1/source](https://elixir.bootlin.com/linux/v4.19.1/source)
 
 ## 1. Why `macvlan` and `br` don't co-exist: Meet `rx_handler`
 
