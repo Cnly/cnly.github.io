@@ -1,5 +1,5 @@
 ---
-tool_title: gPassword
+# tool_title: gPassword
 permalink: /gpw
 layout: empty
 ---

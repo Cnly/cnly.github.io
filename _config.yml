@@ -3,7 +3,7 @@ title: cnly.github.io
 baseurl: ""
 url: "https://cnly.github.io"
 github_username: Cnly
-exclude: ['gpw.md', 'about.md', 'categories.md']
+exclude: ['about.md', 'categories.md']
 plugins: [jekyll-paginate]
 description: > # this means to ignore newlines until "baseurl:"
   A tiny site of Cnly's.<br />
