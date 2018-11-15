@@ -1,5 +1,5 @@
 ---
-title: An Investigation Into Bridge and Macvlan Devices
+title: Conflicts and Limitations of Bridge and Macvlan Devices
 date: '2018-11-09T23:44:21+08:00'
 tags:
   - linux
