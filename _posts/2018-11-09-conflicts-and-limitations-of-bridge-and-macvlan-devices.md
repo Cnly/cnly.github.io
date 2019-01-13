@@ -23,7 +23,7 @@ To explain this, we need to see how `macvlan` and `br` manipulate a device in or
 
 It should be noted that according to that description, currently, a device can only have at most one `rx_handler`. This is why `macvlan` and `br` conflict. The actions of registration of `rx_handler` by `macvlan` and `br` can be found at [drivers/net/macvlan.c#L1174](https://elixir.bootlin.com/linux/v4.19.1/source/drivers/net/macvlan.c#L1174) and [source/net/bridge/br_if.c#L622](https://elixir.bootlin.com/linux/v4.19.1/source/net/bridge/br_if.c#L622), respectively.
 
-## 2. `macvlan` respects others' privacy and don't want others' packets
+## 2. `macvlan` respects others' privacy and doesn't want others' packets
 
 To explain my second observation, we need to look into the `rx_handler` used by `macvlan`. It can be found at [drivers/net/macvlan.c#L439](https://elixir.bootlin.com/linux/v4.19.1/source/drivers/net/macvlan.c#L439), and I'm only putting the most important part here:
 
