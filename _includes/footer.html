@@ -8,8 +8,10 @@
       <div class="footer-col  footer-col-1">
         <ul class="contact-list">
           <li>{{ site.title }}</li>
+		  {% if site.email %}
           <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
           <br />
+		  {% endif %}
           <li>subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></li>
         </ul>
       </div>
@@ -49,7 +51,7 @@
 
       <div class="footer-col  footer-col-3">
         <p class="text">{{ site.description }}<br/>
-        <small>Except where otherwise noted, this website is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 License</a>.</small></p>
+        Except where otherwise noted, this website is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 License</a>.</p>
       </div>
     </div>
 
