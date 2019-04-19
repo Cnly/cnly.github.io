@@ -6,8 +6,7 @@ github_username: Cnly
 exclude: ['about.md', 'categories.md']
 plugins: [jekyll-paginate]
 description: > # this means to ignore newlines until "baseurl:"
-  A tiny site of Cnly's.<br />
-  Powered by Jekyll + GitHub Pages.
+  powered by Jekyll / hosted on GitHub
   
 githubio_https_redirect: true
 google_analytics: UA-54761187-1
