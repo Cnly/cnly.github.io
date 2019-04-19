@@ -12,7 +12,11 @@ layout: default
         <span class="post-meta">{{ post.date | date: "%-d %b, %Y" }}</span>
 
         <h2>
+          {% if post.red %}
+          <a class="post-link red" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+          {% else %}
           <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+          {% endif %}
         </h2>
       </li>
     {% endfor %}
@@ -21,21 +25,21 @@ layout: default
 </div>
 
 <br />
-<div style="display: block; text-align: center;">
+<div class="paginator" style="display: block; text-align: center;">
   {% if paginator.previous_page %}
     {% if paginator.previous_page == 1 %}
-      <a href="/">Newer</a>
+      <a href="/">« Newer</a>
     {% else %}
-      <a href="{{ site.paginate_path | replace: ':num', paginator.previous_page }}">Newer</a>
+      <a href="{{ site.paginate_path | replace: ':num', paginator.previous_page }}">« Newer</a>
     {% endif %}
   {% else %}
     <a style="color:gray;">Newer</a>
   {% endif %}
   |
-  Page: {{ paginator.page }} of {{ paginator.total_pages }}
+  Page {{ paginator.page }} of {{ paginator.total_pages }}
   |
   {% if paginator.next_page %}
-    <a href="{{ site.paginate_path | replace: ':num', paginator.next_page }}">Older</a>
+    <a href="{{ site.paginate_path | replace: ':num', paginator.next_page }}">Older »</a>
   {% else %}
     <a style="color:gray;">Older</a>
   {% endif %}

@@ -165,6 +165,10 @@
     padding: $spacing-unit 0;
 }
 
+body.red .page-content a {
+    @extend a, .red;
+}
+
 .page-heading {
     font-size: 20px;
 }

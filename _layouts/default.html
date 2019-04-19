@@ -3,7 +3,11 @@
 
   {% include head.html %}
 
+  {% if page.red %}
+  <body class="red">
+  {% else %}
   <body>
+  {% endif %}
 
     {% include header.html %}
 

@@ -11,10 +11,10 @@ fa-icon: tags
 <h3 style="margin-left: -5px;">All Tags</h3>
 {% for item in (0..site.tags.size) %}{% unless forloop.last %}
   {% capture this_word %}{{ tag_words[item] | strip_newlines }}{% endcapture %}
-  <li>
+  <li class="tags-page-tag-list-item">
       <a href="#{{ this_word | replace:' ','-' }}-ref" data-toggle="tab">
-        {{ this_word }} ({{ site.tags[this_word].size }})
-     </a>
+        {{ this_word }}</a>
+    <span class="grey">({{ site.tags[this_word].size }})</span>
   </li>
 {% endunless %}{% endfor %}
 <br />
@@ -26,7 +26,11 @@ fa-icon: tags
   <div id="{{ this_word | replace:' ','-' }}-ref">
     <h3><i class="fa fa-tag" style="margin-right: 3px; margin-left: -5px;" aria-hidden="true"></i>{{ this_word }}</h3>
       {% for post in site.tags[this_word] %}{% if post.title != null %}
-        <li style="line-height: 30px;"><a href="{{ site.BASE_PATH }}{{post.url}}">{{post.title}}</a> - {{ post.date | date: "%d %B, %Y" }}</li>
+    {% if post.red %}
+        <li style="line-height: 30px;"><a class="red" href="{{ site.BASE_PATH }}{{post.url}}">{{post.title}}</a> <span class="grey">- {{ post.date | date: "%d %B, %Y" }}</span></li>
+    {% else %}
+        <li style="line-height: 30px;"><a href="{{ site.BASE_PATH }}{{post.url}}">{{post.title}}</a> <span class="grey">- {{ post.date | date: "%d %B, %Y" }}</span></li>
+    {% endif %}
       {% endif %}{% endfor %}
       {% unless item == last_item %}
         <br />

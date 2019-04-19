@@ -93,7 +93,7 @@ a {
     text-decoration: none;
 
     &:visited {
-        color: darken($brand-color, 15%);
+        color: darken($brand-color, 10%);
     }
 
     &:hover {
@@ -102,6 +102,19 @@ a {
     }
 }
 
+
+a.red {
+    color: $red-color;
+    text-decoration: none;
+
+    &:visited {
+        color: darken($red-color, 10%);
+    }
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
 
 
 /**
@@ -200,5 +213,29 @@ pre {
         path {
             fill: $grey-color;
         }
+    }
+}
+
+
+
+.paginator,
+.grey {
+    color: $grey-color;
+}
+
+
+.paginator a,
+.site-footer a,
+li.tags-page-tag-list-item a {
+    color: $text-color;
+    text-decoration: none;
+
+    &:visited {
+        color: darken($text-color, 10%);
+    }
+
+    &:hover {
+        // color: $text-color;
+        text-decoration: underline;
     }
 }
