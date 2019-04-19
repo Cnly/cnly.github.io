@@ -7,6 +7,9 @@ tags:
   - this
   - tutorial
 ---
+
+**Updated19 April 2019**: Updated `admin/index.html` to the latest official version and fixed some minor (natural) language problems.
+
 This post walks through the really fast process of adding [Netlify CMS](https://www.netlifycms.org/) to an existing GitHub Pages site. At the end of this post you should have:
 
 * A functioning CMS for your static GitHub Pages site
@@ -55,31 +58,26 @@ Create a file named `index.html`.
 
 Copy and paste these into it:
 
-{% highlight html %}
+```html
 <!doctype html>
 <html>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Content Manager</title>
-
-  <!-- Include the styles for the Netlify CMS UI, after your own styles -->
-
-  <link rel="stylesheet" href="https://unpkg.com/netlify-cms@^1.0.0/dist/cms.css" />
-
 </head>
 <body>
   <!-- Include the script that builds the page and powers Netlify CMS -->
-  <script src="https://unpkg.com/netlify-cms@^1.0.0/dist/cms.js"></script>
+  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
 </body>
 </html>
-{% endhighlight %}
+```
 
 Then create another file named `config.yml`.
 
 Copy and paste these into it:
 
-{% highlight yaml %}
+```yaml
 backend:
   name: github
   repo: you/you.github.io
@@ -99,7 +97,7 @@ collections:
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Tags", name: "tags", widget: "list"}
       - {label: "Body", name: "body", widget: "markdown"}
-{% endhighlight %}
+```
 
 Be sure to replace `you/you.github.io` with your repo, and `octopus-cat-123456.netlify.com` with `your-site-name.netlify.com`.
 
