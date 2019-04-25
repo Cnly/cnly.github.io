@@ -165,7 +165,7 @@
     padding: $spacing-unit 0;
 }
 
-body.red .page-content a {
+body.inner-a-red .page-content a {
     @extend a, .red;
 }
 

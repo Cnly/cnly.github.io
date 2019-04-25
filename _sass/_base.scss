@@ -103,7 +103,7 @@ a {
 }
 
 
-a.red {
+.red {
     color: $red-color;
     text-decoration: none;
 
@@ -124,8 +124,8 @@ blockquote {
     color: $grey-color;
     border-left: 4px solid $grey-color-light;
     padding-left: $spacing-unit / 2;
-    font-size: 18px;
-    letter-spacing: -1px;
+    font-size: 16px;
+    // letter-spacing: -1px;
     font-style: italic;
 
     > :last-child {
@@ -143,7 +143,7 @@ code {
     font-size: 15px;
     border: 1px solid $grey-color-light;
     border-radius: 3px;
-	// background-color: #eef;
+    // background-color: #eef;
 }
 
 code {
@@ -161,6 +161,15 @@ pre {
     }
 }
 
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+    font-size: unset;
+}
 
 
 /**
@@ -219,7 +228,8 @@ pre {
 
 
 .paginator,
-.grey {
+.grey,
+.gray {
     color: $grey-color;
 }
 
