@@ -3,7 +3,7 @@
  */
 .site-header {
 	// border-top: 5px solid $grey-color-dark;
-    border-bottom: 1px solid $grey-color-light;
+    // border-bottom: 1px solid $grey-color-light;
     min-height: 56px;
 
     // Positioning context for the mobile navigation icon
@@ -32,7 +32,7 @@
     }
 
     .page-link {
-        color: $text-color;
+        color: $grey-color-dark;
         line-height: $base-line-height;
 
         // Gaps between nav items, but not on the first one
@@ -92,7 +92,7 @@
  * Site footer
  */
 .site-footer {
-    border-top: 1px solid $grey-color-light;
+    // border-top: 1px solid $grey-color-light;
     padding: $spacing-unit 0;
 }
 
@@ -105,6 +105,10 @@
 .social-media-list {
     list-style: none;
     margin-left: 0;
+
+    .icon.icon--github svg {
+        padding-bottom: 3px;
+    }
 }
 
 .footer-col-wrapper {
@@ -213,6 +217,11 @@ body.inner-a-red .page-content a {
 
 .post-content {
     margin-bottom: $spacing-unit;
+
+    h1, h2, h3, h4, h5, h6 {
+        margin-top: $spacing-unit;
+        margin-bottom: $spacing-unit / 3;
+    }
 
     h2 {
         font-size: 32px;
