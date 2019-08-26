@@ -8,7 +8,6 @@ tags:
   - matrix
   - dendrite
 mathjax: false
-permalink: /gsoc/gsoc-19-report
 ---
 ### Overview
 
@@ -76,7 +75,7 @@ Work left:
 
 ### Work in Component: Room Server
 
-_The Room Server is, as its name suggests, where room events, states, etc. are
+_The Room Server is, as its name suggests, where room events, state, etc. are
 handled._
 
 Work done:
@@ -93,7 +92,7 @@ Work left:
 
 ### Work in Component: Federation
 
-_The Federation Component sends requests to and receive requests from other
+_The Federation Component sends requests to and receives requests from other
 Matrix homeservers._
 
 Work done:
