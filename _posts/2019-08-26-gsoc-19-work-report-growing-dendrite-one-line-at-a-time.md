@@ -8,6 +8,7 @@ tags:
   - matrix
   - dendrite
 mathjax: false
+permalink: /gsoc/gsoc-19-report
 ---
 ### Overview
 
