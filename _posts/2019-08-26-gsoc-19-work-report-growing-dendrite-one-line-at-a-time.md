@@ -145,6 +145,33 @@ Aug, 2019):
 
 [sytest-created]: https://github.com/matrix-org/sytest/pulls?utf8=%E2%9C%93&q=is%3Apr+author%3ACnly+created%3A%3C2019-08-26
 
+### Appendix: On Dendrite Being a GSoC Project
+
+I believe that Dendrite is a pretty special project to work on in the GSoC
+program.
+
+At its current state, Dendrite isn't a complete homeserver yet. This has left a
+large portion of work on Dendrite wide open: As I worked on Dendrite, more than
+often I'd find myself in a place to answer questions related to topics like
+design or project architecture which, if not thoroughly thought through, might
+have consequences in the future development of the project. For this reason, I
+think working on Dendrite involves a set of challenges quite different from what
+attempting to improve an already functioning piece of software would have
+presented.
+
+For the same reason, I think what Dendrite has taught me during the
+summer was less about how to become more fluent in Go or more familiar with
+various tools, but more about developing the mindset that powers software
+projects behind the scenes. But this mindset, to myself, seems more valuable
+than the former, indeed.
+
+And at the end of this report, I'd like to thank my mentors
+[anoa](https://matrix.to/#/@andrewm:amorgan.xyz) and
+[Brendan](https://matrix.to/#/@brendan:abolivier.bzh), as well as everyone else
+at Matrix who has answered my questions, discussed with me, and helped me
+understand the code, and at the same time being super responsive. Without your
+help, my GSoC experience wouldn't have been this enjoyable! :)
+
 [dendrite]: https://github.com/matrix-org/dendrite
 [gomatrixserverlib]: https://github.com/matrix-org/gomatrixserverlib
 [sytest]: https://github.com/matrix-org/sytest
