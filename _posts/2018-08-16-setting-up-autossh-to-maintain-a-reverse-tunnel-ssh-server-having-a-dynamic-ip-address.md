@@ -2,6 +2,7 @@
 title: >-
   Setting Up autossh to Maintain a Reverse Tunnel (SSH Server Having a Dynamic
   IP Address)
+author: Cnly
 date: '2018-08-16T16:54:11+08:00'
 tags:
   - tutorial
@@ -21,7 +22,6 @@ sudo apt install -y autossh
 ```
 
 <br>
-
 
 ## Setting Up SSH Environment
 
@@ -43,17 +43,19 @@ sudo chmod 700 ~sshtunuser/.ssh
 sudo chmod 600 ~sshtunuser/.ssh/authorized_keys
 ```
 
-On the server side in `/etc/ssh/sshd_config`, we'll also need a few options:
+On the server side in `/etc/ssh/sshd_config`, we'll also need a few options for the created user:
 
 ```
-GatewayPorts yes
-ClientAliveInterval 15
-ClientAliveCountMax 3
+Match User sshtunuser
+	GatewayPorts yes
+	ForceCommand /bin/false
+	ClientAliveInterval 30
+	ClientAliveCountMax 3
 ```
 
-The first option allows SSH clients to listen to a port with IP addresses other than localhost, and the second tells the server to ensure the client is still alive every 15 seconds. The third one is optional; it tells the server to disconnect a client if it hasn't replied to keep-alive messages 3 times (this is default).
+The first option allows SSH clients to listen to a port with IP addresses other than localhost, and the second tells the server to ensure the client is still alive every 30 seconds. The third one is optional; it tells the server to disconnect a client if it hasn't replied to keep-alive messages 3 times (this is the default).
 
-Do a `sudo systemctl restart ssh` to make sure new options are taken without error.
+Do a `sudo systemctl reload ssh` to make sure new options are taken without error.
 
 <br>
 
@@ -62,9 +64,9 @@ Do a `sudo systemctl restart ssh` to make sure new options are taken without err
 Here I am assuming we will tell the server to 
 
 ```
-sudo touch /etc/systemd/system/autossh.service
+mkdir -p ~/.config/systemd/user
 
-cat << EOF | sudo tee /etc/systemd/system/autossh.service
+cat << EOF > ~/.config/systemd/user/autossh.service
 [Unit]
 Description=Autossh
 Wants=network-online.target
@@ -72,10 +74,12 @@ After=network-online.target
 StartLimitIntervalSec=0
 
 [Service]
-User=you
-ExecStart=/usr/bin/autossh -M 0 -R 10022:localhost:22 -p 1122 -N -o "ServerAliveInterval 15" -o "ServerAliveCountMax 3" -o "ConnectTimeout 10" -o "ExitOnForwardFailure yes" -i /home/you/.ssh/yourkey sshtunuser@server.com
+ExecStart=/usr/bin/autossh -M 0 -N \
+	-o "ServerAliveInterval 15" -o "ServerAliveCountMax 3" -o "ConnectTimeout 10" -o "ExitOnForwardFailure yes" \
+	-i /home/you/.ssh/yourkey -p 1122 sshtunuser@server.com \
+	-R 10022:localhost:22
 Restart=always
-RestartSec=1
+RestartSec=10
 
 [Install]
 WantedBy=multi-user.target
@@ -84,20 +88,24 @@ EOF
 
 A brief explanation on the service file and autossh arguments:
 
-- `StartLimitIntervalSec=0`: The option that tells systemd not to stop after some restart attempts. May also be `StartLimitInterval=0` on some older versions of systemd.
-- `Restart=always`: Always restart the service no matter what exit code is returned.
-- `RestartSec=1`: Wait 1 seconds before restarting.
+* `StartLimitIntervalSec=0`: The option that tells systemd not to stop after some restart attempts. May also be `StartLimitInterval=0` on some older versions of systemd.
+* `Restart=always`: Always restart the service no matter what exit code is returned.
+* `RestartSec=1`: Wait 1 seconds before restarting.
 
 <br>
 
-- `-M 0`: Disables the "base monitoring port" for autossh itself.
-- `-R 10022:localhost:22 -p 1122`: Some common arguments that are passed to the ssh program.
-- `-o "ServerAliveInterval 15" -o "ServerAliveCountMax 3" -o "ConnectTimeout 10"`: Arguments passed to the ssh program that allow faster discovery of broken connection and faster timeout.
-- `-o "ExitOnForwardFailure yes"`: Without this option, if the ssh client is able to establish the connection but unable to setup a listening port, it will remain running instead of returning an error exit code.
+* `-M 0`: Disables the "base monitoring port" for autossh itself.
+* `-R 10022:localhost:22 -p 1122`: Some common arguments that are passed to the ssh program.
+* `-o "ServerAliveInterval 15" -o "ServerAliveCountMax 3" -o "ConnectTimeout 10"`: Arguments passed to the ssh program that allow faster discovery of broken connection and faster timeout.
+* `-N`: SSH argument to disable command execution (just forward ports).
+* `-o "ExitOnForwardFailure yes"`: Without this option, if the ssh client is able to establish the connection but unable to setup a listening port, it will remain running instead of returning an error exit code.
+
+**Note**: If you haven't logged into the newly created user on the server before, you must do it once manually to answer the host key verification prompt.
 
 Now enable the service:
+
 ```
-sudo systemctl enable --now autossh
+systemctl --user enable --now autossh
 ```
 
 And we're done.
